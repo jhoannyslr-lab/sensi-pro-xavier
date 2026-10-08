@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Sensi Pro | XAVIER_FF</title>
+
+<style>
+:root {
+    --yellow: #ffe600;
+    --black: #080808;
+    --blue: #00eaff;
+    --green: #00ff83;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 15px;
+    background:
+        radial-gradient(ellipse at top, #292000, transparent 50%),
+        linear-gradient(140deg, #050505, #111827, #050505);
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    max-width: 1000px;
+    margin: auto;
+    padding: 18px 5px;
+    border-bottom: 2px solid var(--yellow);
+    text-align: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #ffe60066;
+}
+
+header p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 22px auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.panel {
+    background: linear-gradient(145deg, #131d2b, #080c12);
+    border: 1px solid #685e00;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 0 15px #ffe60012;
+}
+
+h2 {
+    color: var(--yellow);
+    font-size: 19px;
+    margin-top: 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 14px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin: 17px 0 7px;
+    color: #e5e7eb;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #45556e;
+    border-radius: 9px;
+    background: #080d16;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--yellow);
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 9px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.primary {
+    background: var(--yellow);
+    color: #080808;
+    font-size: 16px;
+    padding: 16px;
+}
+
+.secondary {
+    background: #101a27;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+}
+
+.save {
+    background: #06291c;
+    color: var(--green);
+    border: 1px solid var(--green);
+}
+
+.sensi-row {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.sensi-name {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+progress {
+    width: 100%;
+    height: 9px;
+    appearance: none;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background: #253247;
+}
+
+progress::-webkit-progress-value {
+    background: var(--yellow);
+}
+
+progress::-moz-progress-bar {
+    background: var(--yellow);
+}
+
+.number {
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+    border-radius: 7px;
+    padding: 8px 3px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+.tip {
+    margin-top: 20px;
+    padding: 13px;
+    background: #171a15;
+    border-radius: 9px;
+    border-left: 3px solid var(--yellow);
+    font-size: 12px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.status {
+    color: var(--green);
+    font-size: 13px;
+    min-height: 16px;
+}
+
+footer {
+    max-width: 1000px;
+    margin: 20px auto 0;
+    padding: 25px 10px;
+    text-align: center;
+    border-top: 1px solid #554d00;
+    color: #777;
+    font-size: 12px;
+}
+
+.autor {
+    display: inline-block;
+    margin: 12px 0;
+    color: var(--yellow);
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #ffe60088;
+}
+
+@media(max-width: 700px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ SENSI PRO ⚡</div>
+    <p>GENERA · PRUEBA · PERSONALIZA</p>
+    <p style="color:#ffe600;font-weight:bold;">
+        👑 XAVIER_FF 👑
+    </p>
+</header>
+
+<main class="container">
+
+    <section class="panel">
+        <h2>⚙️ CONFIGURACIÓN</h2>
+
+        <label for="marca">Marca del celular</label>
+        <select id="marca" onchange="cargarModelos()">
+            <option value="Samsung">Samsung</option>
+            <option value="Xiaomi">Xiaomi / Redmi / POCO</option>
+            <option value="Motorola">Motorola</option>
+            <option value="iPhone">Apple iPhone</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Realme">Realme</option>
+            <option value="Oppo">OPPO</option>
+            <option value="Vivo">Vivo</option>
+            <option value="Tecno">Tecno</option>
+            <option value="Infinix">Infinix</option>
+            <option value="Otro">Otra marca</option>
+        </select>
+
+        <label for="modelo">Modelo del celular</label>
+        <input id="modelo" list="modelos"
+               placeholder="Ej. Galaxy A15">
+        <datalist id="modelos"></datalist>
+
+        <label for="gama">Rendimiento del dispositivo</label>
+        <select id="gama">
+            <option value="baja">Gama baja</option>
+            <option value="media" selected>Gama media</option>
+            <option value="alta">Gama alta</option>
+        </select>
+
+        <label for="estilo">Estilo de juego</label>
+        <select id="estilo">
+            <option value="equilibrado">Equilibrado</option>
+            <option value="agresivo">Agresivo / movimientos rápidos</option>
+            <option value="precision">Precisión / control</option>
+        </select>
+
+        <label for="escala">Escala de sensibilidad</label>
+        <select id="escala">
+            <option value="100">0–100</option>
+            <option value="200">0–200</option>
+        </select>
+
+        <label for="dpi">DPI (opcional)</label>
+        <input id="dpi" type="number" min="1" max="2000"
+               placeholder="Ej. 400">
+
+        <label for="dedos">Cantidad de dedos</label>
+        <select id="dedos">
+            <option value="2">2 dedos</option>
+            <option value="3">3 dedos</option>
+            <option value="4">4 dedos</option>
+            <option value="5">5 dedos o más</option>
+        </select>
+
+        <button class="primary" onclick="generar()">
+            ⚡ GENERAR SENSIBILIDAD
+        </button>
+
+        <div class="tip">
+            💡 <b>Consejo:</b> prueba los valores en el campo
+            de entrenamiento y ajústalos según tu comodidad.
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>🎯 TU SENSIBILIDAD</h2>
+
+        <p id="descripcion" style="color:#aaa;font-size:13px">
+            Configura tus preferencias y genera tus valores.
+        </p>
+
+        <div id="resultados" class="hidden">
+            <div id="lista"></div>
+
+            <div class="tip">
+                Estos valores son recomendaciones iniciales.
+                No garantizan tiros a la cabeza ni modifican
+                automáticamente la configuración del juego.
+            </div>
+
+            <button class="save" onclick="copiar()">
+                📋 COPIAR CONFIGURACIÓN
+            </button>
+
+            <button class="secondary" onclick="guardar()">
+                💾 GUARDAR FAVORITOS
+            </button>
+
+            <button class="secondary" onclick="verGuardado()">
+                ⭐ VER CONFIGURACIÓN GUARDADA
+            </button>
+
+            <button class="secondary" onclick="generar()">
+                🔄 GENERAR OTRA VEZ
+            </button>
+
+            <p class="status" id="estado"></p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div style="font-weight:bold;letter-spacing:2px;">
+        ⚡ SENSI PRO ⚡
+    </div>
+
+    <span class="autor">
+        👑 CREADO POR XAVIER_FF 👑
+    </span>
+
+    <br>
+
+    <small>© 2026 · Proyecto independiente</small>
+</footer>
+
+<script>
+const nombres = [
+    "General",
+    "Punto rojo",
+    "Mira 2x",
+    "Mira 4x",
+    "Mira francotirador",
+    "Cámara"
+];
+
+const modelosPorMarca = {
+    Samsung: [
+        "Galaxy A05", "Galaxy A15", "Galaxy A25",
+        "Galaxy A35", "Galaxy A55", "Galaxy S24"
+    ],
+    Xiaomi: [
+        "Redmi 12", "Redmi 13", "Redmi Note 13",
+        "POCO M6", "POCO X6", "POCO F6"
+    ],
+    Motorola: [
+        "Moto G24", "Moto G54", "Moto G84", "Edge 50"
+    ],
+    iPhone: [
+        "iPhone 11", "iPhone 12", "iPhone 13",
+        "iPhone 14", "iPhone 15", "iPhone 16"
+    ],
+    Huawei: ["Nova 11", "Nova 12", "Pura 70"],
+    Realme: ["Realme C55", "Realme C67", "Realme 12"],
+    Oppo: ["OPPO A58", "OPPO A78", "OPPO Reno 11"],
+    Vivo: ["Vivo Y27", "Vivo Y36", "Vivo V30"],
+    Tecno: ["Spark 20", "Spark 20 Pro", "Camon 30", "Pova 6"],
+    Infinix: ["Hot 40", "Hot 50", "Note 40", "GT 20 Pro"],
+    Otro: ["Otro modelo"]
+};
+
+let ultimaConfiguracion = {};
+
+function cargarModelos() {
+    const marca = document.getElementById("marca").value;
+    const lista = document.getElementById("modelos");
+
+    lista.innerHTML = "";
+
+    (modelosPorMarca[marca] || []).forEach(modelo => {
+        const opcion = document.createElement("option");
+        opcion.value = modelo;
+        lista.appendChild(opcion);
+    });
+}
+
+cargarModelos();
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generar() {
+    const gama = document.getElementById("gama").value;
+    const estilo = document.getElementById("estilo").value;
+    const escala = Number(document.getElementById("escala").value);
+    const marca = document.getElementById("marca").value;
+    const modelo = document.getElementById("modelo").value.trim();
+    const dpi = document.getElementById("dpi").value;
+    const dedos = document.getElementById("dedos").value;
+
+    let min = gama === "baja" ? 75 : gama === "media" ? 85 : 90;
+    let max = 100;
+
+    if (estilo === "precision") {
+        min -= 15;
+        max -= 10;
+    }
+
+    if (estilo === "agresivo") {
+        min += 3;
+    }
+
+    const factor = escala / 100;
+
+    ultimaConfiguracion = {
+        "Creador": "XAVIER_FF",
+        "Marca": marca,
+        "Modelo": modelo || "No especificado",
+        "Estilo": estilo,
+        "DPI introducido": dpi || "No especificado",
+        "Dedos": dedos
+    };
+
+    nombres.forEach((nombre, indice) => {
+        let valor;
+
+        if (indice === 4) {
+            valor = aleatorio(30, 60);
+        } else {
+            valor = aleatorio(min, Math.min(max, 100));
+        }
+
+        valor = Math.min(escala, Math.round(valor * factor));
+        ultimaConfiguracion[nombre] = valor;
+    });
+
+    mostrar();
+}
+
+function mostrar() {
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    nombres.forEach(nombre => {
+        const valor = ultimaConfiguracion[nombre];
+
+        const fila = document.createElement("div");
+        fila.className = "sensi-row";
+
+        const contenido = document.createElement("div");
+        const titulo = document.createElement("div");
+        titulo.className = "sensi-name";
+
+        const texto = document.createElement("span");
+        texto.textContent = nombre;
+        titulo.appendChild(texto);
+
+        const barra = document.createElement("progress");
+        barra.max = Number(document.getElementById("escala").value);
+        barra.value = valor;
+
+        contenido.appendChild(titulo);
+        contenido.appendChild(barra);
+
+        const numero = document.createElement("div");
+        numero.className = "number";
+        numero.textContent = valor;
+
+        fila.appendChild(contenido);
+        fila.appendChild(numero);
+        lista.appendChild(fila);
+    });
+
+    document.getElementById("descripcion").textContent =
+        (ultimaConfiguracion.Modelo || "Tu dispositivo") +
+        " · Creado por XAVIER_FF";
+
+    document.getElementById("resultados").classList.remove("hidden");
+    document.getElementById("estado").textContent = "";
+}
+
+function textoConfiguracion() {
+    return Object.entries(ultimaConfiguracion)
+        .map(([clave, valor]) => clave + ": " + valor)
+        .join("\n");
+}
+
+async function copiar() {
+    try {
+        await navigator.clipboard.writeText(textoConfiguracion());
+
+        document.getElementById("estado").textContent =
+            "✅ ¡Configuración copiada!";
+    } catch (error) {
+        const area = document.createElement("textarea");
+        area.value = textoConfiguracion();
+
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+
+        document.getElementById("estado").textContent =
+            "✅ Configuración copiada.";
+    }
+}
+
+function guardar() {
+    try {
+        localStorage.setItem(
+            "sensiProFavorita",
+            JSON.stringify(ultimaConfiguracion)
+        );
+
+        document.getElementById("estado").textContent =
+            "⭐ ¡Guardada correctamente!";
+    } catch (error) {
+        document.getElementById("estado").textContent =
+            "No fue posible guardar la configuración.";
+    }
+}
+
+function verGuardado() {
+    try {
+        const guardada = localStorage.getItem("sensiProFavorita");
+
+        if (!guardada) {
+            alert("Todavía no tienes una configuración guardada.");
+            return;
+        }
+
+        ultimaConfiguracion = JSON.parse(guardada);
+        mostrar();
+
+        document.getElementById("estado").textContent =
+            "⭐ Configuración favorita cargada.";
+    } catch (error) {
+        alert("No fue posible recuperar la configuración.");
+    }
+}
+</script>
+
+</body>
+  </html>
